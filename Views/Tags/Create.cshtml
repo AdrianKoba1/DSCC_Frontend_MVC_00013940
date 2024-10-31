@@ -1,0 +1,14 @@
+﻿@model Frontend_MVC_00013940.Models.Tag
+
+<h2>Create New Tag</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="TagName"></label>
+        <input asp-for="TagName" class="form-control" />
+        <span asp-validation-for="TagName" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

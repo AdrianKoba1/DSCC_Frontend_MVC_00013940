@@ -1,0 +1,42 @@
+﻿@model Frontend_MVC_00013940.Models.Note
+
+<h2>Create New Note</h2>
+
+<form asp-action="Create" method="post" id="createForm">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" maxlength="30" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TagId">Select Tag</label>
+        <select asp-for="TagId" class="form-control">
+            <option value="">-- Select Tag --</option>
+            @foreach (var tag in ViewBag.Tags as IEnumerable<Frontend_MVC_00013940.Models.Tag>)
+            {
+                <option value="@tag.Id">@tag.TagName</option>
+            }
+        </select>
+        <span asp-validation-for="TagId" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="DateCreated" id="DateCreated" />
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+<script>
+    // Set the current date when the form is submitted
+    document.getElementById('createForm').addEventListener('submit', function () {
+        document.getElementById('DateCreated').value = new Date().toISOString();
+    });
+</script>

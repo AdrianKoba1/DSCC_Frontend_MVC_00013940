@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Frontend_MVC_00013940.Models.Tag>
+
+<h2>Tags</h2>
+
+<table>
+    <tr>
+        <th>Tag Name</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var tag in Model)
+    {
+        <tr>
+            <td>@tag.TagName</td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = tag.Id })">Edit</a> |
+                <a href="@Url.Action("Delete", new { id = tag.Id })">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="@Url.Action("Create")">Create New Tag</a>

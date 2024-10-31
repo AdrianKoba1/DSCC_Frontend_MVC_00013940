@@ -1,0 +1,44 @@
+﻿@model Frontend_MVC_00013940.Models.Note
+
+<h2>Delete Note</h2>
+
+<div>
+    <h4>Are you sure you want to delete this note?</h4>
+    <div>
+        <strong>Title:</strong> @Model.Title <br />
+        <strong>Description:</strong> @Model.Description <br />
+    </div>
+</div>
+
+<button id="deleteBtn" class="btn btn-danger">Delete</button>
+<a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+<script>
+    document.getElementById('deleteBtn').addEventListener('click', function () {
+        fetch(`https://localhost:7145/api/notes/@Model.Id`, {
+            method: 'DELETE'
+        })
+            .then(response => {
+                const statusMessage = document.getElementById('statusMessage');
+                if (response.ok) {
+                    statusMessage.textContent = 'Note deleted successfully!';
+                    statusMessage.classList.add('alert-success');
+                    statusMessage.style.display = 'block';
+                    setTimeout(() => window.location.href = '/Notes', 1500);
+                } else {
+                    statusMessage.textContent = 'Failed to delete note.';
+                    statusMessage.classList.add('alert-danger');
+                    statusMessage.style.display = 'block';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+
+
+<!-- Status message area -->
+<div id="statusMessage" style="display: none;" class="alert alert-info"></div>
+
+
+
+

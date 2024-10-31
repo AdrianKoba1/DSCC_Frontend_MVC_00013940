@@ -1,0 +1,29 @@
+﻿@model Frontend_MVC_00013940.Models.Note
+
+<h2>Edit Note</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" maxlength="30" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TagId">Select Tag</label>
+        <select asp-for="TagId" asp-items="ViewBag.Tags" class="form-control"></select>
+        <span asp-validation-for="TagId" class="text-danger"></span>
+    </div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</form>

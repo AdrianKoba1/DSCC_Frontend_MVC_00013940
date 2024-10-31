@@ -1,0 +1,20 @@
+﻿@model Frontend_MVC_00013940.Models.Note
+
+<h2>Note Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Title: @Model.Title</h4>
+        <p class="card-text">
+            <strong>Description:</strong> @Model.Description
+        </p>
+        <p class="card-text">
+            <strong>Date Created:</strong> @Model.DateCreated.ToString("yyyy-MM-dd HH:mm:ss")
+        </p>
+        <p class="card-text">
+            <strong>Tag:</strong> @(Model.Tag != null ? Model.Tag.TagName : "No Tag")
+        </p>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>

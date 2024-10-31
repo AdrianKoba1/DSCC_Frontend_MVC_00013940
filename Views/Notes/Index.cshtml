@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Frontend_MVC_00013940.Models.Note>
+
+<h2>Notes List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date Created</th>
+            <th>Tag</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td>@note.Title</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(note.Description))
+                    {
+                        if (note.Description.Length > 50)
+                        {
+                            @note.Description.Substring(0, 50)
+                            <text>...</text>
+                        }
+                        else
+                        {
+                            @note.Description
+                        }
+                    }
+                </td>
+                <td>@note.DateCreated.ToString("yyyy-MM-dd")</td>
+                <td>@(note.Tag?.TagName ?? "No Tag")</td>
+                <td>
+                    <a href="@Url.Action("Details", "Notes", new { id = note.Id })" class="btn btn-info btn-sm">Details</a>
+                    <a href="@Url.Action("Edit", "Notes", new { id = note.Id })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", "Notes", new { id = note.Id })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create", "Notes")" class="btn btn-success">Create New Note</a>
